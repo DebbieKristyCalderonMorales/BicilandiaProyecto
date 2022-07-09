@@ -24,11 +24,19 @@ class Mantenimiento {
     public function ListarMantenimiento() {
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
-        $sql = "SELECT * FROM mantenimiento";
+        $sql = "SELECT m.descripcion, b.codigo, r.nombre FROM mantenimiento m "
+                . "INNER JOIN bicicleta b ON m.idBicicleta=b.idBicicleta "
+                . "INNER JOIN repuesto r ON m.idRepuesto=r.idRepuesto;";
         $mostrar = $ic->db->prepare($sql);
         $mostrar->execute();
         $objmantenimiento = $mostrar->fetchAll(PDO::FETCH_OBJ);
         return $objmantenimiento;
     }
-
+    
+    public function Seleccionar(int $id){
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
+        $sql = "SELECT * FROM mantenimiento WHERE idMantenimiento = $id";
+        $mostrar = $ic->db->prepare($sql);
+    }
 }

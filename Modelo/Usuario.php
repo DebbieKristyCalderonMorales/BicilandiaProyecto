@@ -12,13 +12,14 @@ class Usuario {
     protected $Usuario;
     protected $Pass;
     protected $Tipo;
+    protected $Estado;
 
     protected function GuardarUsuario() {
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
 
         $sql = "INSERT INTO usuario (dni,nombres,apellidos,direccion,telefono,correo,"
-                . "usuario,pass,idTipoUsuario) VALUES (?,?,?,?,?,?,?,?,?)";
+                . "usuario,pass,idTipoUsuario,estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
         $nuevapass = password_hash($this->Pass, PASSWORD_ARGON2I);
         $insertar = $ic->db->prepare($sql);
         $insertar->bindParam(1, $this->Dni);
@@ -30,20 +31,22 @@ class Usuario {
         $insertar->bindParam(7, $this->Usuario);
         $insertar->bindParam(8, $nuevapass);
         $insertar->bindParam(9, $this->Tipo);
+        $insertar->bindParam(10, $this->Estado);
         $insertar->execute();
     }
 
     public function ListarUsuarios() {
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
-        $sql = "SELECT * FROM usuario";
+        $sql = "SELECT u.dni,u.nombres,u.apellidos,u.direccion,u.telefono,u.correo,u.usuario,t.rolUsuario,u.estado"
+                . " FROM usuario u INNER JOIN tipousuario t on u.idTipoUsuario=t.idTipoUsuario";
         $mostrar = $ic->db->prepare($sql);
         $mostrar->execute();
-        $objusuario = $mostrar->fetchAll(PDO::FETCH_OBJ);
-        return $objusuario;
+        $objusuarios = $mostrar->fetchAll(PDO::FETCH_OBJ);
+        return $objusuarios;
     }
 
-    public function validarLogin($dato) {
+    public function ValidarLogin($dato) {
 
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
@@ -58,7 +61,7 @@ class Usuario {
     }
     
 
-    public function cargarDatos($dato) {
+    public function CargarDatos($dato) {
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
         try {
@@ -72,19 +75,39 @@ class Usuario {
             die($ex->getMessage());
         }
     }
+    
+    public function ObtenerDatos($id) {
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
+        try {
+            $query = "SELECT u.dni,u.nombres,u.apellidos,u.direccion,u.telefono,"
+                    . "u.correo,u.usuario,u.estado,t.rolUsuario "
+                    . "FROM usuario u INNER JOIN tipousuario t on u.idTipoUsuario=t.idTipoUsuario "
+                    . "WHERE u.idUsuario = ?";
+            $smt = $ic->db->prepare($query);
+            $smt->execute(array($id));
+            return $smt->fetch(PDO::FETCH_OBJ);
+        } catch (Exception $ex) {
+            die($ex->getMessage());
+        }
+    }
+    
+    protected function ActualizarUsuario() {
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
 
-    //public function ConsultarUsuario() {
-    //    include_once '../Config/Conexion.php';
-    //    $ic = new Conexion();
-    //    
-    //    $sql = "SELECT * FROM usuario WHERE usuario='$this->Usuario'";
-    //    $consul = $ic->db->prepare($sql);
-    //    $consul->execute();
-    //    $objusuario = $consul->fetchAll(PDO::FETCH_OBJ);
-    //    foreach ($objusuario as $user) {
-    //    }
-    //    if(empty($user)){
-    //        $user = "Sindatos";
-    //    }
-    //}
+        $sql = "UPDATE usuario SET dni=?,nombres=?,apellidos=?,direccion=?,telefono=?,correo=?,"
+                . "usuario=?,idTipoUsuario=?,estado=? WHERE idUsuario=?";
+        $actualizar = $ic->db->prepare($sql);
+        $actualizar->bindParam(1, $this->Dni);
+        $actualizar->bindParam(2, $this->Nombres);
+        $actualizar->bindParam(3, $this->Apellidos);
+        $actualizar->bindParam(4, $this->Direccion);
+        $actualizar->bindParam(5, $this->Telefono);
+        $actualizar->bindParam(6, $this->Correo);
+        $actualizar->bindParam(7, $this->Usuario);
+        $actualizar->bindParam(9, $this->Tipo);
+        $actualizar->bindParam(10, $this->Estado);
+        $actualizar->execute();
+    }
 }

@@ -29,4 +29,14 @@ class Bicicleta {
         $objbicicleta = $mostrar->fetchAll(PDO::FETCH_OBJ);
         return $objbicicleta;
     }
+    
+    public function ListarBicicletaDisponible(){
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
+        $sql = "SELECT * FROM bicicleta WHERE estado=1";
+        $mostrar = $ic->db->prepare($sql);
+        $mostrar->execute();
+        $objbicicleta = $mostrar->fetchAll(PDO::FETCH_OBJ);
+        return $objbicicleta;
+    }
 }

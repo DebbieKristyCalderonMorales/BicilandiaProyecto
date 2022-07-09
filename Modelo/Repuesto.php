@@ -2,6 +2,7 @@
 
 class Repuesto {
 
+    protected $IdRepuesto;
     protected $Nombre;
     protected $Stock;
     protected $Precio;
