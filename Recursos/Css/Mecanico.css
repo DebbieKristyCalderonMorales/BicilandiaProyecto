@@ -34,34 +34,16 @@
 
 .statistics .box p {
     color: var(--dk-gray-400);
-    padding: 8px 8px 8px 8px;
+    padding: 8px 8px 10px 15px;
 }
 
-.contenedor{
-    width: 100%;
-    max-width: 1200px;
-    height: 430px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
+.statistics h3{
+    padding: 3px 8px 5px 15px;
 }
 
-.contenedor .card{
-    flex: 1;
-  margin: 1rem;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 6rem rgba(black, 0.1);
+.statistics span{
+    padding: 3px 8px 5px 5px;
 }
-
-.contenedor .card img{
-    width: 330px;
-    height: 220px;
-}
-
-
 
 .carousel{
     width: 100%;

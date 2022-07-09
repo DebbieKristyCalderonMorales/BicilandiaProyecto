@@ -32,7 +32,6 @@
         <title>BICILANDIA</title>
     </head>
 
-
     <div class="navigation-wrap bg-light start-header start-style" style="background-color: #9df5ab">
         <div class="container">
             <div class="row">
@@ -47,20 +46,13 @@
 
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
-                                    <a class="nav-link" href="UsuariosControl.php?accion=mecanico">Inicio</a>
+                                    <a class="nav-link" href="UsuariosControl.php?accion=encargado">Inicio</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Repuestos</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Alquiler</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="RepuestoControl.php?accion=agregar">Agregar nuevo repuesto</a>
-                                        <a class="dropdown-item" href="RepuestoControl.php?accion=repuestos">Listado de repuestos</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="MantenimientoControl.php?accion=registrar">Registrar mantenimiento</a>
-                                        <a class="dropdown-item" href="MantenimientoControl.php?accion=mantenimiento">Listado de Bicicletas en mantenimiento</a>
+                                        <a class="dropdown-item" href="AlquilerControl.php?accion=registrar">Registrar alquiler</a>
+                                        <a class="dropdown-item" href="AlquilerControl.php?accion=alquiler">Listado de alquiler</a>
                                     </div>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
