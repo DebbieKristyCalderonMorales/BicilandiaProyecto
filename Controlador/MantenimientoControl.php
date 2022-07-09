@@ -37,6 +37,6 @@ if (isset($_GET['accion']) && $_GET['accion'] == 'registrar') {
 }
 
 if (isset($_POST['accion']) && $_POST['accion'] == 'insertar') {
-    $ic = new RepuestoControl();
+    $ic = new MantenimientoControl();
     $ic->Datos($_POST['descripcion'], $_POST['repuesto'], $_POST['bicicleta'], $_POST['usuario']);
 }

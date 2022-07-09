@@ -19,6 +19,10 @@ class BicicletaControl extends Bicicleta {
         include_once '../Vista/Bicicletas/AgregarBicicleta.php';
     }
     
+    public function MostrarFiltro() {
+        include_once '../Vista/Bicicletas/FiltrarBicicletas.php';
+    }
+    
     public function Datos($codigo,$color,$marca,$estado) {
         $this->Codigo = $codigo;
         $this->Color = $color;
@@ -38,6 +42,11 @@ if (isset($_GET['accion']) && $_GET['accion'] == 'bicicletas') {
 if(isset($_GET['accion']) && $_GET['accion']=='agregar'){
     $ic = new BicicletaControl();
     $ic->MostrarRegistro();
+}
+
+if(isset($_GET['accion']) && $_GET['accion']=='filtrar'){
+    $ic = new BicicletaControl();
+    $ic->MostrarFiltro();
 }
 
 if(isset($_POST['accion']) && $_POST['accion']=='insertar'){
