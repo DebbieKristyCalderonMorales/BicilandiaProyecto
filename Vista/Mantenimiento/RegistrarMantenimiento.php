@@ -32,15 +32,13 @@ include_once '../Config/Conexion.php';
                                             <select id="repuesto" name="repuesto" class="form-control">
                                                 <option selected>Seleccionar Repuesto</option>
                                                 <option value="1">Aro</option>
-                                                <option value="2">Llanta</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="bicicleta">Bicicletas</label>
                                             <select id="bicicleta" name="bicicleta" class="form-control">
                                                 <option selected>Seleccionar Bicicleta</option>
-                                                <option value="1">526489 - Azul</option>
-                                                <option value="2">963158 - Negro</option>
+                                                <option value="2">212830032-B4</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

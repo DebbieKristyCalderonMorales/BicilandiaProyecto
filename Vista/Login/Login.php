@@ -6,6 +6,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        
+        <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
         <link href="../Recursos/Css/Estilo.css" rel="stylesheet" type="text/css"/>
         
         <link rel="apple-touch-icon" sizes="57x57" href="../Recursos/Iconos/apple-icon-57x57.png">

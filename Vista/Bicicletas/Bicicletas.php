@@ -34,8 +34,6 @@ include_once '../Config/Conexion.php';
             </thead>
             <tbody>
                 <?php foreach ($objbicicleta as $b) { ?>
-
-
                     <tr>
                         <td>
                             <span class="custom-checkbox">
@@ -46,7 +44,17 @@ include_once '../Config/Conexion.php';
                         <td><?php echo $b->codigo; ?></td>
                         <td><?php echo $b->color; ?></td>
                         <td><?php echo $b->marca; ?></td>
-                        <td><?php echo $b->estado; ?></td>
+                        <td><?php
+                            if ($b->estado == '1') {
+                                echo 'Disponible';
+                            } else if($b->estado == '2'){
+                                echo 'Mantenimiento';
+                            } else if($b->estado == '3'){
+                                echo 'En alquiler';
+                            } else {
+                                echo 'No disponible';
+                            }
+                            ?></td>
                         <td>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Edit"></i></a>
                             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="bi bi-trash" data-toggle="tooltip" title="Delete"></i></a>
@@ -55,20 +63,107 @@ include_once '../Config/Conexion.php';
                 <?php } ?>
             </tbody>
         </table>
-        <div class="clearfix">
-            <div class="hint-text"> <b></b>  <b></b> </div>
-            <ul class="pagination">
-                <li class="page-item disabled"><a href="#">Antes</a></li>
-                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
-            </ul>
+    </div>
+</div>
+<!-- Modal agregar HTML -->
+<div id="addEmployeeModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form method="POST" action="BicicletaControl.php" id="registrarBicicleta">
+                <input type="hidden" name="accion" value="insertar">
+                <div class="modal-header">
+                    <h4 class="modal-title">Agregar bicicleta</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body row">
+                    <div class="form-group col-md-6">
+                        <label>Código</label>
+                        <input type="text" name="codigo" id="codigo" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Color</label>
+                        <input type="text" name="color" id="color" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Marca</label>
+                        <input type="text" name="marca" id="marca" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado" class="form-control">
+                            <option selected>Seleccionar Estado</option>
+                            <option value="1">Disponible</option>
+                            <option value="4">No disponible</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" class="btn btn-success" value="Agregar">
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
+<!-- Modal Editar HTML -->
+<div id="editEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar datos de Bicicleta</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body row">
+                    <div class="form-group col-md-6">
+                        <label>Código</label>
+                        <input type="text" name="codigo" id="codigo" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Color</label>
+                        <input type="text" name="color" id="color" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Marca</label>
+                        <input type="text" name="marca" id="marca" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado" class="form-control">
+                            <option selected>Seleccionar Estado</option>
+                            <option value="1">Disponible</option>
+                            <option value="4">No disponible</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" class="btn btn-info" value="Guardar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal eliminar HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar Bicicleta</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de querer eliminar estos registros?</p>
+                    <p class="text-warning"><small>Recuerda que está acción ya no se puede deshacer.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?php
 include_once '../Recursos/Menu/Footer.php';
