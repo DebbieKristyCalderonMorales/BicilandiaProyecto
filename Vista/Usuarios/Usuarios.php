@@ -49,8 +49,12 @@ include_once '../Config/Conexion.php';
                             ?>
                         </td>
                         <td>
-                            <a href="?accion=cargar&idUsuario=<?php echo $u->idUsuario; ?>" class="edit"><i class="bi bi-pencil-square" title="Editar"></i></a>
-                            <a href="UsuariosControl.php?accion=eliminar&id=<?php echo $u->idUsuario; ?>" class="delete"><i class="bi bi-trash" title="Eliminar"></i></a>
+                            <a onclick="EditarUsuario(<?php echo $u->idUsuario; ?>)" class="edit">
+                                <i class="bi bi-pencil-square" title="Editar"></i>
+                            </a>
+                            <a onclick="EliminarUsuario(<?php echo $u->idUsuario; ?>)" class="delete">
+                                <i class="bi bi-trash" title="Eliminar"></i>
+                            </a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -58,6 +62,7 @@ include_once '../Config/Conexion.php';
         </table>
     </div>
 </div>
+
 <!-- Modal agregar HTML -->
 <div id="addEmployeeModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -120,72 +125,13 @@ include_once '../Config/Conexion.php';
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                    <input type="submit" class="btn btn-success" value="Agregar">
+                    <input type="submit" class="btn btn-success" value="Agregar" onclick="Confirmacion2()">
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!-- Modal Editar HTML -->
-<div id="editEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="POST" action="UsuariosControl.php" id="editarUsuario">
-                <input type="hidden" name="accion" value="editar">
-                <div class="modal-header">
-                    <h4 class="modal-title">Editar datos de Usuario</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body row">
-                    <div class="form-group col-md-6">
-                        <label>DNI</label>
-                        <input type="text" name="dni" id="dni" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Nombres</label>
-                        <input type="text" name="nombres" id="nombres" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Apellidos</label>
-                        <input type="text" name="apellidos" id="apellidos" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Teléfono</label>
-                        <input type="text" name="telefono" id="telefono" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label>Dirección</label>
-                        <textarea class="form-control" name="direccion" id="direccion" required></textarea>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Correo</label>
-                        <input type="email" name="correo" id="correo" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Usuario</label>
-                        <input type="text" name="usuario" id="usuario" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Rol de Usuario</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="estado">Estado</label>
-                        <select id="estado" name="estado" class="form-control">
-                            <option selected>Seleccionar Estado</option>
-                            <option value="1">Activo</option>
-                            <option value="0">No Activo</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                    <input type="submit" class="btn btn-info" value="Guardar">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 <!-- Modal eliminar HTML -->
 <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
@@ -207,26 +153,6 @@ include_once '../Config/Conexion.php';
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $("#registrarUsuario").validate({
-            rules: {
-                nombres: {
-                    required: true,
-                    minlength: 3
-                }
-            },
-            messages: {
-                nombres: {
-                    required: 'No puede dejar el campo vacio',
-                    minlength: 'El nombre debe tener más de 3 caracteres'
-                }
-            }
-        });
-
-    });
-</script>
 
 <?php
 include_once '../Recursos/Menu/Footer.php';

@@ -3,6 +3,8 @@ include_once '../Recursos/Menu/HeaderM.php';
 include_once '../Config/Conexion.php';
 ?>
 <iframe src='../Recursos/Menu/Header.php' width="1000" height="76"></iframe>
+
+<div>
 <div class="content-body">
     <div class="container-fluid">
         <div class="row page-titles mx-0">
@@ -51,7 +53,7 @@ include_once '../Config/Conexion.php';
     </div>
 </div>
 
-
+</div>
 
 <?php
 include_once '../Recursos/Menu/FooterM.php';

@@ -15,14 +15,16 @@ include_once '../Config/Conexion.php';
                 </div>
             </div>
         </div>
-        <table class="table">
+        <table class="table table-striped table-hover">
             <thead>
+                <tr>
             <th>Bicicleta</th>
             <th>Fecha</th>
             <th>Hora de Salida</th>
             <th>Cliente</th>
             <th>Estado</th>
             <th>Acción</th>
+            </tr>
             </thead>
             <tbody>
                 <?php foreach ($objalquiler as $a) { ?>
@@ -33,15 +35,15 @@ include_once '../Config/Conexion.php';
                         <td><?php echo $a->cliente; ?></td>
                         <td><?php
                     if ($a->estado == '1') {
-                        echo 'En Alquiler';
-                    } else {
-                        echo 'Devuelto';
-                    }
-                    ?>
+                        echo 'En Alquiler';?>
                         </td>
                         <td>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square" data-toggle="tooltip" title="Editar"></i></a>
                         </td>
+                        <?php } else {
+                        echo 'Devuelto';
+                    }
+                    ?>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -63,14 +65,14 @@ include_once '../Config/Conexion.php';
                         <label for="bicicleta">Bicicleta</label>
                         <select id="bicicleta" name="bicicleta" class="form-control">
                             <option selected>Seleccionar Bicicleta</option>
-                            <?php foreach ($objbicicletas as $b) { ?>
-                                <option value="<?php echo $b->idBicicleta; ?>"><?php echo $b->codigo; ?></option>
+                            <?php foreach ($objbicialquiladas as $ba) { ?>
+                                <option value="<?php echo $ba->idBicicleta; ?>"><?php echo $ba->codigo; ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Fecha</label>
-                        <input type="text" id="fecha" name="fecha" class="form-control" required>
+                        <input type="date" id="fecha" name="fecha" class="form-control" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Hora de Salida</label>
