@@ -23,6 +23,30 @@ class BicicletaControl extends Bicicleta {
         include_once '../Vista/Bicicletas/FiltrarBicicletas.php';
     }
     
+    public function VerificarEdicion($idBicicleta) {
+        $this->IdBicicleta = $idBicicleta;
+        $objunabici = $this->ObtenerBicicleta();
+        require '../Vista/Bicicletas/EditarBicicleta.php';
+    }
+    
+    public function EditarInfo($id, $codigo, $color, $marca, $estado){
+        $this->IdBicicleta = $id;
+        $this->Codigo = $codigo;
+        $this->Color = $color;
+        $this->Marca = $marca;
+        $this->Estado = $estado;
+        $this->EditarBicicleta();
+        $this->MostrarBicicleta();
+    }
+    
+    public function VerificarEliminacion($idBicicleta){
+        $this->IdBicicleta = $idBicicleta;
+        $this->EliminarBicicleta();
+        $this->MostrarBicicleta();
+    }
+    
+    
+    
     public function Datos($codigo,$color,$marca,$estado) {
         $this->Codigo = $codigo;
         $this->Color = $color;
@@ -51,5 +75,31 @@ if(isset($_GET['accion']) && $_GET['accion']=='filtrar'){
 
 if(isset($_POST['accion']) && $_POST['accion']=='insertar'){
     $ic = new BicicletaControl();
-    $ic->Datos($_POST['codigo'],$_POST['color'],$_POST['marca'], $_POST['estado']);
+    $ic->Datos(
+            $_POST['codigo'],
+            $_POST['color'],
+            $_POST['marca'],
+            $_POST['estado']);
 }
+
+if(isset($_GET['accion']) && $_GET['accion'] == 'editar'){
+    $ic = new BicicletaControl();
+    $ic->VerificarEdicion($_GET['idBicicleta']);
+}
+
+if(isset($_POST['accion']) && $_POST['accion'] == 'editar') {
+    $ic = new BicicletaControl();
+    $ic->EditarInfo(
+            $_POST['id'],
+            $_POST['codigo'], 
+            $_POST['color'], 
+            $_POST['marca'],
+            $_POST['estado']);
+}
+
+if(isset($_GET['accion']) && $_GET['accion'] == 'eliminar'){
+    $ic = new BicicletaControl();
+    $ic->VerificarEliminacion($_GET['idBicicleta']);
+}
+
+

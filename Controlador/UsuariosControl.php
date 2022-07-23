@@ -3,9 +3,10 @@
 session_start();
 
 include_once '../Modelo/Usuario.php';
+include_once '../Modelo/Bicicleta.php';
 
 class UsuariosControl extends Usuario {
-
+    
     public function MostrarLogin() {
         include_once '../Vista/Login/Login.php';
     }
@@ -35,6 +36,8 @@ class UsuariosControl extends Usuario {
     }
 
     public function MostrarEncargado() {
+        $icb = new Bicicleta();
+        $objbicicletas = $icb->ListarBicicletaDisponible();
         include_once '../Vista/Encargado.php';
     }
 
@@ -43,7 +46,14 @@ class UsuariosControl extends Usuario {
         include_once '../Vista/Usuarios/Usuarios.php';
     }
     
-    public function Actualizar($dni, $nombres, $apellidos, $direccion, $telefono, $correo, $usuario, $tipo, $estado){
+    public function VerificarEdicion($idUsuario) {
+        $this->id = $idUsuario;
+        $objunusuario = $this->ObtenerUsuario();
+        require '../Vista/Usuarios/EditarUsuario.php';
+    }
+    
+    public function EditarInfo($id,$dni, $nombres, $apellidos, $direccion, $telefono, $correo, $usuario, $pass, $tipo, $estado){
+        $this->id = $id;
         $this->Dni = $dni;
         $this->Nombres = $nombres;
         $this->Apellidos = $apellidos;
@@ -51,9 +61,10 @@ class UsuariosControl extends Usuario {
         $this->Telefono = $telefono;
         $this->Correo = $correo;
         $this->Usuario = $usuario;
+        $this->Pass = $pass;
         $this->Tipo = $tipo;
         $this->Estado = $estado;
-        $this->ActualizarUsuario();
+        $this->EditarUsuario();
         $this->MostrarUsuarios();
     }
 
@@ -73,6 +84,7 @@ class UsuariosControl extends Usuario {
     }
 
     public function VerificarLogin($usuario, $pass) {
+        
         $modelo = new Usuario();
         $modelo->Usuario = $usuario;
         $modelo->Pass = $pass;
@@ -86,12 +98,20 @@ class UsuariosControl extends Usuario {
             } else if ($e->rolUsuario == "Encargado Alquiler") {
                 $this->RedirectEncargado();
             }
+            $_SESSION['idUsuario'] = $e->idUsuario;
             $_SESSION['nombres'] = $e->nombres;
             $_SESSION['apellidos'] = $e->apellidos;
+            $_SESSION['rol'] = $e->rolUsuario;
             $_SESSION['acceso'] = 1;
         } else {
             $this->RedirectLogin();
         }
+    }
+    
+    public function VerificarEliminacion($id){
+        $this->id = $id;
+        $this->EliminarUsuario();
+        $this->MostrarUsuarios();
     }
 
     public function Redirect() {
@@ -146,6 +166,21 @@ if (isset($_GET['accion']) && $_GET['accion'] == 'registro') {
     $ic->MostrarRegistro();
 }
 
+if(isset($_POST['accion']) && $_POST['accion']=='insertar'){
+    $ic = new UsuariosControl();
+    $ic->Datos(
+            $_POST['dni'], 
+            $_POST['nombres'], 
+            $_POST['apellidos'],
+            $_POST['direccion'], 
+            $_POST['telefono'], 
+            $_POST['correo'],
+            $_POST['usuario'],
+            $_POST['pass'],
+            $_POST['tipo'], 
+            $_POST['estado']);
+}
+
 if (isset($_GET['accion']) && $_GET['accion'] == 'cargar') {
     $ic = new UsuariosControl();
     $ic->MostrarActualizacion();
@@ -161,16 +196,28 @@ if (isset($_POST['accion']) && $_POST['accion'] == 'login') {
     $ic->VerificarLogin($_POST['UsuarioLogin'], $_POST['ContrasenaLogin']);
 }
 
-if (isset($_POST['accion']) && $_POST['accion'] == 'insertar') {
+if(isset($_GET['accion']) && $_GET['accion'] == 'editar'){
     $ic = new UsuariosControl();
-    $ic->Datos($_POST['dni'], $_POST['nombres'], $_POST['apellidos'],
-            $_POST['direccion'], $_POST['telefono'], $_POST['correo'],
-            $_POST['usuario'], $_POST['pass'], $_POST['tipo'], $_POST['estado']);
+    $ic->VerificarEdicion($_GET['idUsuario']);
 }
 
-if (isset($_POST['accion']) && $_POST['accion'] == 'actualizar') {
+if(isset($_POST['accion']) && $_POST['accion'] == 'editar') {
     $ic = new UsuariosControl();
-    $ic->Actualizar($_POST['dni'], $_POST['nombres'], $_POST['apellidos'],
-            $_POST['direccion'], $_POST['telefono'], $_POST['correo'],
-            $_POST['usuario'], $_POST['tipo'], $_POST['estado']);
+    $ic->EditarInfo(
+            $_POST['id'],
+            $_POST['dni'], 
+            $_POST['nombres'], 
+            $_POST['apellidos'],
+            $_POST['direccion'], 
+            $_POST['telefono'], 
+            $_POST['correo'],
+            $_POST['usuario'],
+            $_POST['pass'],
+            $_POST['tipo'], 
+            $_POST['estado']);
+}
+
+if(isset($_GET['accion']) && $_GET['accion'] == 'eliminar'){
+    $ic = new UsuariosControl();
+    $ic->VerificarEliminacion($_GET['idUsuario']);
 }
