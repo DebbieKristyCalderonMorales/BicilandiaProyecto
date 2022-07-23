@@ -22,7 +22,7 @@ include_once '../Config/Conexion.php';
                     <i class="bi bi-bicycle fs-2 text-center bg-danger rounded-circle"></i>
                     <div class="ms-3">
                         <div class="d-flex align-items-center">
-                            <h3 class="mb-0">0</h3> <span class="d-block ms-2">Bicicletas</span>
+                            <h3 class="mb-0">1</h3> <span class="d-block ms-2">Bicicletas</span>
                         </div>
                         <p class="fs-normal mb-0">Se muestra la cantidad de bicicletas en mantenimiento</p>
                     </div>
