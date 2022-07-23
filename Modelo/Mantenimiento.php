@@ -24,9 +24,10 @@ class Mantenimiento {
     public function ListarMantenimiento() {
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
-        $sql = "SELECT m.descripcion, b.codigo, r.nombre FROM mantenimiento m "
+        $sql = "SELECT m.descripcion, b.codigo, r.nombre, u.nombres FROM mantenimiento m "
                 . "INNER JOIN bicicleta b ON m.idBicicleta=b.idBicicleta "
-                . "INNER JOIN repuesto r ON m.idRepuesto=r.idRepuesto;";
+                . "INNER JOIN repuesto r ON m.idRepuesto=r.idRepuesto "
+                . "INNER JOIN usuario u ON m.idUsuario=u.idUsuario;";
         $mostrar = $ic->db->prepare($sql);
         $mostrar->execute();
         $objmantenimiento = $mostrar->fetchAll(PDO::FETCH_OBJ);

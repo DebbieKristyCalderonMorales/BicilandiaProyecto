@@ -25,8 +25,35 @@ class Repuesto {
         $sql = "SELECT * FROM repuesto";
         $mostrar = $ic->db->prepare($sql);
         $mostrar->execute();
-        $objusuario = $mostrar->fetchAll(PDO::FETCH_OBJ);
-        return $objusuario;
+        $objrepuesto = $mostrar->fetchAll(PDO::FETCH_OBJ);
+        return $objrepuesto;
     }
-
+    
+    protected function ObtenerRepuesto() {
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
+        $sql = "SELECT * FROM repuesto WHERE idRepuesto='$this->IdRepuesto'";
+        $mostrar = $ic->db->prepare($sql);
+        $mostrar->execute();
+        $objunrepuesto = $mostrar->fetchAll(PDO::FETCH_OBJ);
+        return $objunrepuesto;
+    }
+    
+    protected function EditarRepuesto() {
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
+        $sql = "UPDATE repuesto SET nombre='$this->Nombre',stock='$this->Stock',"
+                . "precio='$this->Precio' WHERE idRepuesto='$this->IdRepuesto'";
+        $editar = $ic->db->prepare($sql);
+        $editar->execute();
+    }
+    
+    protected function EliminarRepuesto() {
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
+        $sql = "DELETE FROM repuesto WHERE idRepuesto='$this->IdRepuesto'";
+        $eliminar = $ic->db->prepare($sql);
+        $eliminar->execute();
+    }
+    
 }

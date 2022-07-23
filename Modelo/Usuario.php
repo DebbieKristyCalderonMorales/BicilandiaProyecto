@@ -38,7 +38,7 @@ class Usuario {
     public function ListarUsuarios() {
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
-        $sql = "SELECT u.dni,u.nombres,u.apellidos,u.direccion,u.telefono,u.correo,u.usuario,t.rolUsuario,u.estado"
+        $sql = "SELECT u.idUsuario,u.dni,u.nombres,u.apellidos,u.direccion,u.telefono,u.correo,u.usuario,u.pass,t.rolUsuario,u.estado"
                 . " FROM usuario u INNER JOIN tipousuario t on u.idTipoUsuario=t.idTipoUsuario";
         $mostrar = $ic->db->prepare($sql);
         $mostrar->execute();
@@ -80,10 +80,7 @@ class Usuario {
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
         try {
-            $query = "SELECT u.dni,u.nombres,u.apellidos,u.direccion,u.telefono,"
-                    . "u.correo,u.usuario,u.estado,t.rolUsuario "
-                    . "FROM usuario u INNER JOIN tipousuario t on u.idTipoUsuario=t.idTipoUsuario "
-                    . "WHERE u.idUsuario = ?";
+            $query = "SELECT * FROM usuario WHERE u.idUsuario = ?";
             $smt = $ic->db->prepare($query);
             $smt->execute(array($id));
             return $smt->fetch(PDO::FETCH_OBJ);
@@ -92,22 +89,36 @@ class Usuario {
         }
     }
     
-    protected function ActualizarUsuario() {
+    protected function ObtenerUsuario() {
         include_once '../Config/Conexion.php';
         $ic = new Conexion();
-
-        $sql = "UPDATE usuario SET dni=?,nombres=?,apellidos=?,direccion=?,telefono=?,correo=?,"
-                . "usuario=?,idTipoUsuario=?,estado=? WHERE idUsuario=?";
-        $actualizar = $ic->db->prepare($sql);
-        $actualizar->bindParam(1, $this->Dni);
-        $actualizar->bindParam(2, $this->Nombres);
-        $actualizar->bindParam(3, $this->Apellidos);
-        $actualizar->bindParam(4, $this->Direccion);
-        $actualizar->bindParam(5, $this->Telefono);
-        $actualizar->bindParam(6, $this->Correo);
-        $actualizar->bindParam(7, $this->Usuario);
-        $actualizar->bindParam(9, $this->Tipo);
-        $actualizar->bindParam(10, $this->Estado);
-        $actualizar->execute();
+        $sql = "SELECT u.dni,u.nombres,u.apellidos,u.direccion,u.telefono, "
+                . "u.correo,u.usuario,u.estado,t.rolUsuario "
+                . "FROM usuario u INNER JOIN tipousuario t on u.idTipoUsuario=t.idTipoUsuario"
+                . " WHERE u.idUsuario='$this->id'";
+        $mostrar = $ic->db->prepare($sql);
+        $mostrar->execute();
+        $objunusuario = $mostrar->fetchAll(PDO::FETCH_OBJ);
+        return $objunusuario;
+    }
+    
+    protected function EditarUsuario() {
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
+        $sql = "UPDATE usuario SET dni='$this->Dni',nombres='$this->Nombres',"
+                . "apellidos='$this->Apellidos',direccion='$this->Direccion',"
+                . "telefono='$this->Telefono',correo='$this->Correo',"
+                . "usuario='$this->Usuario',pass='$this->Pass',idTipoUsuario='$this->Tipo',"
+                . "estado='$this->Estado' WHERE idUsuario='$this->id'";
+        $editar = $ic->db->prepare($sql);
+        $editar->execute();
+    }
+    
+    protected function EliminarUsuario() {
+        include_once '../Config/Conexion.php';
+        $ic = new Conexion();
+        $sql = "DELETE FROM usuario WHERE idUsuario='$this->id'";
+        $eliminar = $ic->db->prepare($sql);
+        $eliminar->execute();
     }
 }
