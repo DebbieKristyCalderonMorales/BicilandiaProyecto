@@ -24,16 +24,17 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-        <link href="../Recursos/Css/HeaderM.css" rel="stylesheet" type="text/css"/>
-        <link href="../Recursos/Css/Usuarios.css" rel="stylesheet" type="text/css"/>
-        <link href="../Recursos/Css/Mecanico.css" rel="stylesheet" type="text/css"/>
-        <script src="../Recursos/Js/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script src="../Recursos/Js/jquery.validate.js" type="text/javascript"></script>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/HeaderM.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/plugins/SweetAlert/dist/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/Usuarios.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/Mecanico.css" rel="stylesheet" type="text/css"/>
+        <script src="http://localhost/Bicilandia_Proyecto/Recursos/Js/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script src="http://localhost/Bicilandia_Proyecto/Recursos/Js/jquery.validate.js" type="text/javascript"></script>
         <title>BICILANDIA</title>
     </head>
 
 
-    <div class="navigation-wrap bg-light start-header start-style" style="background-color: #9df5ab">
+    <div class="navigation-wrap start-header start-style" style="background-color: #9df5d5">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -52,7 +53,6 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Repuestos</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="RepuestoControl.php?accion=agregar">Agregar nuevo repuesto</a>
                                         <a class="dropdown-item" href="RepuestoControl.php?accion=repuestos">Listado de repuestos</a>
                                     </div>
                                 </li>

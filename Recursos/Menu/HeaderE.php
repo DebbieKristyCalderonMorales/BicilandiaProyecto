@@ -17,27 +17,28 @@
         <link rel="icon" type="image/png" sizes="32x32" href="../Recursos/Iconos//favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="96x96" href="../Recursos/Iconos//favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="../Recursos/Iconos//favicon-16x16.png">
-        <link rel="manifest" href="../Recursos/Iconos//manifest.json">
+        <link rel="manifest" href="http://localhost/Bicilandia_Proyecto/Recursos/Iconos//manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-        <link href="../Recursos/Css/HeaderM.css" rel="stylesheet" type="text/css"/>
-        <link href="../Recursos/Css/Usuarios.css" rel="stylesheet" type="text/css"/>
-        <link href="../Recursos/Css/Mecanico.css" rel="stylesheet" type="text/css"/>
-        <script src="../Recursos/Js/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script src="../Recursos/Js/jquery.validate.js" type="text/javascript"></script>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/plugins/SweetAlert/dist/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/HeaderM.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/Usuarios.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/Mecanico.css" rel="stylesheet" type="text/css"/>
+        <script src="http://localhost/Bicilandia_Proyecto/Recursos/Js/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script src="http://localhost/Bicilandia_Proyecto/Recursos/Js/jquery.validate.js" type="text/javascript"></script>
         <title>BICILANDIA</title>
     </head>
 
-    <div class="navigation-wrap bg-light start-header start-style" style="background-color: #9df5ab">
+    <div class="navigation-wrap start-header start-style" style="background-color: #caf2a5">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-light">
-
+                        <a class="navbar-brand" >Bicilandia</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>

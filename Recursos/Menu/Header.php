@@ -21,18 +21,19 @@
         <link rel="icon" type="image/png" sizes="32x32" href="../Recursos/Iconos//favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="96x96" href="../Recursos/Iconos//favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="../Recursos/Iconos//favicon-16x16.png">
-        <link rel="manifest" href="../Recursos/Iconos//manifest.json">
+        <link rel="manifest" href="http://localhost/Bicilandia_Proyecto/Recursos/Iconos//manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-        <link href="../Recursos/Css/Header.css" rel="stylesheet" type="text/css"/>
-        <link href="../Recursos/Css/Usuarios.css" rel="stylesheet" type="text/css"/>
-        <link href="../Recursos/Css/Administrador.css" rel="stylesheet" type="text/css"/>
-        <script src="../Recursos/Js/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script src="../Recursos/Js/jquery.validate.js" type="text/javascript"></script>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/Header.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/plugins/SweetAlert/dist/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/Usuarios.css" rel="stylesheet" type="text/css"/>
+        <link href="http://localhost/Bicilandia_Proyecto/Recursos/Css/Administrador.css" rel="stylesheet" type="text/css"/>
+        <script src="http://localhost/Bicilandia_Proyecto/Recursos/Js/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script src="http://localhost/Bicilandia_Proyecto/Recursos/Js/jquery.validate.js" type="text/javascript"></script>
         <title>BICILANDIA</title>
     </head>
 
@@ -71,7 +72,8 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Nuevo reporte</a>
+                                        <a class="dropdown-item" href="AlquilerControl.php?accion=disponibilidad">Disponibilidad Bicicletas</a>
+                                        <a class="dropdown-item" href="AlquilerControl.php?accion=alquileres">Alquileres Realizados</a>
                                     </div>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
